@@ -3,17 +3,28 @@ ajax.open('GET', 'list.php');
 ajax.responseType = 'json';
 ajax.send();
 
-ajax.addEventListener("readystatechange", () => {
+ajax.onreadystatechange = function() {
+    if (ajax.readyState === 4 && this.status === 200) {
+        document.getElementById('res').innerHTML = this.response;
+    }
+}
 
-    if (ajax.readyState === 4 && ajax.status == 200) {
-        console.log(ajax);
-        console.log(ajax.response)
+window.onload = () => {
+    let url = 'http://localhost/cadastro_clientes/pages/userList/list.php'
 
-        let res = ajax.response;
-        // let list = document.querySelector('.list'); div a ser inseridos os dados recebidos
-
-        for (let i = 0; i < res.length; i++) {
-            list.innerHTML += "<li>"+res[i].innerHTML+"</li>";
+    let xhr = new XMLHttpRequest();
+    // xhr.responseType = 'json';
+    xhr.open('GET', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const response = JSON.parse(xhr.response);
+            CriarLista(response)
+            console.log(JSON.parse(xhr.response))
         }
     }
-})
+    xhr.send();
+}
+
+// 
+

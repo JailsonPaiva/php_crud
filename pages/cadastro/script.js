@@ -1,62 +1,75 @@
-var Campo_nome = document.querySelector('input[name=nome]')
-var Campo_nascimento = document.querySelector('input[name=nascimento]')
-var Campo_cpf = document.querySelector('input[name=cpf]')
-var Campo_celular = document.querySelector('input[name=celular]')
-var Campo_email = document.querySelector('input[name=email]')
-var Campo_cep = document.querySelector('input[name=cep]')
-var Campo_cidade = document.querySelector('input[name=cidade]')
-var Campo_estado = document.querySelector('input[name=estado]')
-var Campo_bairro = document.querySelector('input[name=bairro]')
-var Campo_rua = document.querySelector('input[name=rua]')
-var Campo_observacao = document.querySelector('textarea[name=obs]')
+const Campo_nome = document.querySelector('input[name=nome]')
+const Campo_nascimento = document.querySelector('input[name=nascimento]')
+const Campo_cpf = document.querySelector('input[name=cpf]')
+const Campo_celular = document.querySelector('input[name=celular]')
+const Campo_email = document.querySelector('input[name=email]')
+const Campo_cep = document.querySelector('input[name=cep]')
+const Campo_numero = document.querySelector('input[name=numero]')
+const Campo_cidade = document.querySelector('input[name=cidade]')
+const Campo_estado = document.querySelector('input[name=estado]')
+const Campo_bairro = document.querySelector('input[name=bairro]')
+const Campo_rua = document.querySelector('input[name=rua]')
+const Campo_observacao = document.querySelector('textarea[name=obs]')
 
-var Btn_cadastrar = document.getElementById("cadastrar")
+const Btn_cadastrar = document.getElementById("cadastrar")
 
-
-
-Btn_cadastrar.addEventListener("click", function(e) {
+Btn_cadastrar.addEventListener("click", (e) => {
     e.preventDefault();
 
-    let valorNome = Campo_nome.value;
-    let valorNacimiento = Campo_nascimento.value;
-    let valorCpf = Campo_cpf.value
-    let valorCelular = Campo_celular.value
-    let valorEmail = Campo_email.value
-    let valorCep = Campo_cep.value
-    let valorCidade = Campo_cidade.value
-    let valorEstado = Campo_estado.value
-    let valorBairro = Campo_bairro.value
-    let valorRua = Campo_rua.value
-    let valorObs = Campo_observacao.value
+    const valorNome = Campo_nome.value
+    const valorNacimiento = Campo_nascimento.value
+    const valorCpf = Campo_cpf.value
+    const valorCelular = Campo_celular.value
+    const valorEmail = Campo_email.value
+    const valorCep = Campo_cep.value
+    const valorNumero = Campo_numero.value
+    const valorCidade = Campo_cidade.value
+    const valorEstado = Campo_estado.value
+    const valorBairro = Campo_bairro.value
+    const valorRua = Campo_rua.value
+    const valorObs = Campo_observacao.value
 
-    let xhr = new XMLHttpRequest();
-    const url = 'insert.php';
-    xhr.open('POST', url);
-    xhr.responseType = 'json';
-
-    let documento = {
-        "nome": valorNome,
-        "nascimento":valorNacimiento,
-        "cpf": valorCpf,
-        "celular": valorCelular,
-        "email":valorEmail,
-        "cep": valorCep,
-        "cidade": valorCidade,
-        "estado": valorEstado,
-        "bairro": valorBairro,
-        "rua": valorRua,
-        "observacao": valorObs
+    const documento = {
+        nome: valorNome,
+        nascimento:valorNacimiento,
+        cpf: valorCpf,
+        celular: valorCelular,
+        email:valorEmail,
+        cep: valorCep,
+        numero: valorNumero,
+        cidade: valorCidade,
+        estado: valorEstado,
+        bairro: valorBairro,
+        rua: valorRua,
+        observacao: valorObs
     }
 
-    xhr.send(documento);
+    console.log(documento)
+
+    const url = 'http://localhost/cadastro_clientes/pages/cadastro/insert.php';
     
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4 && xhr.status == 200) {
-            console.log("enviado")
-            console.log(JSON.parse(xhr.response))
-        } else {
-            console.log('ocorreu um erro')
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/json')
+
+    xhr.setRequestHeader = () => {
+        if (xhr.readyState === 4) {
+            console.log(xhr.response)
         }
     }
-    
+
+    xhr.send(JSON.stringify(documento));
+
+    Campo_nome.value = ''
+    Campo_nascimento.value = ''
+    Campo_cpf.value = ''
+    Campo_celular.value = ''
+    Campo_email.value = ''
+    Campo_cep.value = ''
+    Campo_numero.value = ''
+    Campo_cidade.value = ''
+    Campo_estado.value = ''
+    Campo_bairro.value = ''
+    Campo_rua.value = ''
+    Campo_observacao.value = ''
 })
