@@ -38,10 +38,9 @@ window.onload = () => {
         }
     }
     xhr.send();
-
-
 }
 
+// PERCONRRENDO O ARRAY RETORNADO E PREENCHENDO OS CAMPOS
 function PreencherCampos(response) {
     response.forEach((dados) => {
         id_cliente.value = dados[0]
@@ -63,8 +62,7 @@ function PreencherCampos(response) {
 Btn_atualizar.addEventListener("click", (e) => {
     e.preventDefault();
 
-  
-
+    // PEGANDO OS VALORES DOS CAMPOS
     const valorNome = Campo_nome.value
     const valorNacimiento = Campo_nascimento.value
     const valorCpf = Campo_cpf.value
@@ -77,7 +75,6 @@ Btn_atualizar.addEventListener("click", (e) => {
     const valorBairro = Campo_bairro.value
     const valorRua = Campo_rua.value
     const valorObs = Campo_observacao.value
-
 
     const documento = {
         id: parseInt(id_cliente.value),
@@ -110,5 +107,5 @@ Btn_atualizar.addEventListener("click", (e) => {
     }
 
     xhr.send(JSON.stringify(documento));
-
+    window.location.href='../listaClientes/index.html'
 })

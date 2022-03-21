@@ -12,15 +12,6 @@ button[type="submit"] {
     width: 9rem;
 }
 
-.res {
-    gap: 1rem;
-    margin-top: 1rem;   
-}
-
-.list-group-item {
-    gap: 1rem;
-}
 .btn-success {
     margin: 0 10px;
 }
-

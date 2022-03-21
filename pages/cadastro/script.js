@@ -12,6 +12,10 @@ const Campo_rua = document.querySelector('input[name=rua]')
 const Campo_observacao = document.querySelector('textarea[name=obs]')
 
 const Btn_cadastrar = document.getElementById("cadastrar")
+const consultar = document.getElementById("consultar")
+
+
+
 
 Btn_cadastrar.addEventListener("click", (e) => {
     e.preventDefault();
@@ -52,24 +56,17 @@ Btn_cadastrar.addEventListener("click", (e) => {
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-Type', 'application/json')
 
-    xhr.setRequestHeader = () => {
-        if (xhr.readyState === 4) {
-            console.log(xhr.response)
-        }
-    }
+    // xhr.setRequestHeader = () => {
+    //     if (xhr.readyState === 4) {
+    //         console.log(xhr.response)
+    //     }
+    // }
 
     xhr.send(JSON.stringify(documento));
 
-    Campo_nome.value = ''
-    Campo_nascimento.value = ''
-    Campo_cpf.value = ''
-    Campo_celular.value = ''
-    Campo_email.value = ''
-    Campo_cep.value = ''
-    Campo_numero.value = ''
-    Campo_cidade.value = ''
-    Campo_estado.value = ''
-    Campo_bairro.value = ''
-    Campo_rua.value = ''
-    Campo_observacao.value = ''
+    window.location.href='../listaClientes/index.html'
+})
+
+consultar.addEventListener("click", () => {
+    window.location.href='../listaClientes/index.html'
 })

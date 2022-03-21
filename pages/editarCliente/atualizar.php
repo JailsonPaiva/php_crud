@@ -20,9 +20,6 @@
     $nascimento=$data['nascimento'];
     $id=$data['id'];
 
-
-    $sql = 'UPDATE pessoa SET nome = :nome WHERE id = :id';
-
     $sql = "UPDATE pessoa SET nome= :nome, cpf=  :cpf, celular= :celular, email= :email, cep= :cep, numero= :numero, cidade= :cidade, estado= :estado, bairro= :bairro, rua= :rua, observacao= :observacao, nascimento= :nascimento  WHERE id= :id";
 
     $sql_update = $pdo->prepare($sql);
