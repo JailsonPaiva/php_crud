@@ -1,0 +1,27 @@
+body {
+    padding: 1rem;
+}
+
+.text-center h3 {
+    margin-top: .5rem;
+    font-weight: normal;
+    color: #053e8b;
+}
+
+button[type="submit"] {
+    width: 9rem;
+}
+
+.res {
+    gap: 1rem;
+    margin-top: 1rem;   
+}
+
+.list-group-item {
+    gap: 1rem;
+}
+
+.btn {
+    margin: 10px 0;
+}
+

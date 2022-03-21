@@ -1,0 +1,13 @@
+body {
+    padding: 1rem;
+}
+
+.text-center h3 {
+    margin-top: .5rem;
+    font-weight: normal;
+    color: #053e8b;
+}
+
+button[type="submit"] {
+    width: 9rem;
+}

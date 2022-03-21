@@ -10,11 +10,60 @@ const Campo_estado = document.querySelector('input[name=estado]')
 const Campo_bairro = document.querySelector('input[name=bairro]')
 const Campo_rua = document.querySelector('input[name=rua]')
 const Campo_observacao = document.querySelector('textarea[name=obs]')
+const id_cliente = document.querySelector('input#id_cliente')
 
-const Btn_cadastrar = document.getElementById("cadastrar")
+const Btn_atualizar = document.getElementById("atualizar")
 
-Btn_cadastrar.addEventListener("click", (e) => {
+
+window.onload = () => {
+    
+    const teste = new URL(window.location.href);
+    const params = new URLSearchParams(teste.search);
+    console.log(teste)
+    console.log(params.get('id'))
+    
+    const cliente_id = parseInt(params.get('id'))
+
+    const url = `http://localhost/cadastro_clientes/pages/editarCliente/editar.php?id=${cliente_id}`
+
+    const xhr = new XMLHttpRequest();
+    // xhr.responseType = 'json';
+    xhr.open('GET', url, false);
+    xhr.setRequestHeader('Content-Type', 'application/json')
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+            const response = JSON.parse(xhr.response);
+            console.log(response)
+            PreencherCampos(response)
+        }
+    }
+    xhr.send();
+
+
+}
+
+function PreencherCampos(response) {
+    response.forEach((dados) => {
+        id_cliente.value = dados[0]
+        Campo_nome.value = dados[1]
+        Campo_nascimento.value = dados[12]  
+        Campo_cpf.value = dados[2]
+        Campo_celular.value = dados[3]
+        Campo_email.value = dados[4]
+        Campo_cep.value = dados[5]
+        Campo_numero.value = dados[6]
+        Campo_cidade.value = dados[7]
+        Campo_estado.value = dados[8]
+        Campo_bairro.value = dados[9]
+        Campo_rua.value = dados[10]
+        Campo_observacao.value = dados[11]
+    });
+}
+
+Btn_atualizar.addEventListener("click", (e) => {
     e.preventDefault();
+
+  
 
     const valorNome = Campo_nome.value
     const valorNacimiento = Campo_nascimento.value
@@ -29,7 +78,9 @@ Btn_cadastrar.addEventListener("click", (e) => {
     const valorRua = Campo_rua.value
     const valorObs = Campo_observacao.value
 
+
     const documento = {
+        id: parseInt(id_cliente.value),
         nome: valorNome,
         nascimento:valorNacimiento,
         cpf: valorCpf,
@@ -44,12 +95,12 @@ Btn_cadastrar.addEventListener("click", (e) => {
         observacao: valorObs
     }
 
-    console.log(documento)
+    // console.log(id_cliente.value)
 
-    const url = 'http://localhost/cadastro_clientes/pages/cadastro/inserir.php';
+    const url = 'http://localhost/cadastro_clientes/pages/editarCliente/atualizar.php';
     
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
+    xhr.open('PUT', url);
     xhr.setRequestHeader('Content-Type', 'application/json')
 
     xhr.setRequestHeader = () => {
@@ -60,16 +111,4 @@ Btn_cadastrar.addEventListener("click", (e) => {
 
     xhr.send(JSON.stringify(documento));
 
-    Campo_nome.value = ''
-    Campo_nascimento.value = ''
-    Campo_cpf.value = ''
-    Campo_celular.value = ''
-    Campo_email.value = ''
-    Campo_cep.value = ''
-    Campo_numero.value = ''
-    Campo_cidade.value = ''
-    Campo_estado.value = ''
-    Campo_bairro.value = ''
-    Campo_rua.value = ''
-    Campo_observacao.value = ''
 })
