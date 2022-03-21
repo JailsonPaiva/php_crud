@@ -13,71 +13,140 @@
 <body>
 
   <div class="text-center">
-    <img src="https://newm.com.br/svg/logo-new-m.svg" class="rounded" alt="Logo NewM">
+    <a href="../listaClientes/index.html">
+      <img src="https://newm.com.br/svg/logo-new-m.svg" class="rounded" alt="Logo NewM">
+  </a>
     <h3>Cadastro de cliente</h3 >
   </div>
 
   <form action="" method="post">
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Nome</label>
-      <input type="text" class="form-control" placeholder="Digite o seu nome" name="nome" id="nome"> 
+      <label class="form-label">Nome</label>
+      <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Digite o seu nome" 
+      name="nome" i
+      d="nome"> 
     </div>
 
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Data de nascimento</label>
-      <input type="text" class="form-control" placeholder="00/00/0000" name="nascimento" id="nascimento">
+      <label class="form-label">Data de nascimento</label>
+      <input 
+      type="text" 
+      class="form-control" 
+      placeholder="00/00/0000" 
+      name="nascimento" 
+      id="nascimento" 
+      maxlength="10" 
+      onkeyup="MascaraNascimento()">
     </div>
 
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">CPF</label>
-      <input type="text" class="form-control" placeholder="000.000.000-00" name="cpf" id="cpf">
+      <label class="form-label">CPF</label>
+      <input type="text" 
+      class="form-control" 
+      placeholder="000.000.000-00" 
+      name="cpf" 
+      id="cpf" 
+      maxlength="14" 
+      onkeyup="MascaraCpf()">
     </div>
 
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Celular</label>
-      <input type="text" class="form-control" placeholder="(00) 0 0000-0000" name="celular" id="celular">
+      <label class="form-label">Celular</label>
+      <input type="text" 
+      class="form-control"
+       placeholder="(00)00000-0000" 
+       name="celular" 
+       id="celular" 
+       maxlength="15"
+       onkeypress="mask(this, mphone);">
     </div>
 
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-      <input type="email" class="form-control" placeholder="name@example.com" name="email" id="email">
+      <label class="form-label">E-mail</label>
+      <input
+      type="email" 
+      class="form-control" 
+      placeholder="name@example.com" 
+      name="email" 
+      id="email">
     </div>
 
     <section class="row g-3">
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">CEP:</label>
-        <input type="email" class="form-control" placeholder="00.000-000" name="cep" id="cep">
+        <label class="form-label">CEP:</label>
+        <input 
+        type="email" 
+        class="form-control" 
+        placeholder="00000-000" 
+        name="cep" 
+        id="cep"
+        maxlength="9"
+        onkeyup="MascaraCep()">
       </div>
 
       <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Número</label>
-        <input type="number" class="form-control" placeholder="N°" name="numero" id="numero">
+        <label class="form-label">Número</label>
+        <input type="number" 
+        class="form-control" 
+        placeholder="N°" 
+        name="numero" 
+        id="numero"
+        >
       </div>
 
       <div class="col-md-6">
-        <label for="inputCity" class="form-label">Cidade</label>
-        <input type="text" class="form-control" name="cidade" id="cidade">
+        <label class="form-label">Cidade</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        name="cidade" 
+        id="cidade"
+        placeholder="Cuiabá">
       </div>
       
       <div class="col-md-6">
-        <label for="inputCity" class="form-label">Estado</label>
-        <input type="text" class="form-control" name="estado" id="estado">
+        <label class="form-label">Estado</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        name="estado" 
+        id="estado"
+        maxlength="2"
+        placeholder="MT">
       </div>
 
       <div class="col-6">
-        <label for="inputAddress" class="form-label">Bairro</label>
-        <input type="text" class="form-control" placeholder="Bairro..." name="bairro" id="bairro">
+        <label class="form-label">Bairro</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Bairro..." 
+        name="bairro" 
+        id="bairro">
       </div>
 
       <div class="col-6">
-        <label for="inputAddress" class="form-label">Rua</label>
-        <input type="text" class="form-control" placeholder="Rua..." name="rua" id="rua">
+        <label class="form-label">Rua</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Rua..." 
+        name="rua" 
+        id="rua">
       </div>
     </section>
 
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Observações</label>
-      <textarea class="form-control" rows="3" name="obs" id="observacao" placeholder></textarea>
+      <label class="form-label">Observações</label>
+      <textarea 
+      class="form-control" 
+      rows="3" 
+      name="obs" 
+      id="observacao"
+      maxlength="300"></textarea>
     </div>
 
     <div class="text-center">

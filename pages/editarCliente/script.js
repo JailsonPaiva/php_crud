@@ -15,6 +15,50 @@ const id_cliente = document.querySelector('input#id_cliente')
 const Btn_atualizar = document.getElementById("atualizar")
 
 
+function MascaraCpf() {
+	if(Campo_cpf.value.length == 3 || Campo_cpf.value.length == 7) {
+		Campo_cpf.value += "."
+	} else if(Campo_cpf.value.length == 11) {
+			Campo_cpf.value += "-"
+	} 
+}
+
+function MascaraNascimento() {
+	if(Campo_nascimento.value.length == 2 || Campo_nascimento.value.length == 5) {
+		Campo_nascimento.value += "/"
+	}
+}
+
+function mask(o) {
+    setTimeout(function() {
+      var v = mphone(o.value);
+      if (v != o.value) {
+        o.value = v;
+      }
+    }, 1);
+  }
+  
+function mphone(v) {
+var r = v.replace(/\D/g, "");
+r = r.replace(/^0/, "");
+if (r.length > 10) {
+    r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+} else if (r.length > 5) {
+    r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+} else if (r.length > 2) {
+    r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+} else {
+    r = r.replace(/^(\d*)/, "($1");
+}
+return r;
+}
+
+function MascaraCep() {
+	if(Campo_cep.value.length == 5) {
+		Campo_cep.value += "-"
+	}
+}
+
 window.onload = () => {
     
     const teste = new URL(window.location.href);
