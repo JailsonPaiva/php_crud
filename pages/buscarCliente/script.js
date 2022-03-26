@@ -1,9 +1,11 @@
 const res = document.getElementById('res')
 const campo_email = document.querySelector('input[name=email]')
+// const campo_nome = document.querySelector('input[name=nome]')
 const btn_pesquisar = document.getElementById('pesquisar')
 const btn_limpar = document.getElementById('limpar')
 
 btn_pesquisar.addEventListener('click', () => {
+    res.innerHTML = ""
     PesquisarEmail()
     campo_email.value =''
     // CaregarDados()
@@ -13,6 +15,7 @@ btn_limpar.addEventListener('click',() => res.innerHTML ='')
 
 function PesquisarEmail() {
     const valor_email = campo_email.value
+    // const valor_nome = campo_nome.value
     
     const url = 'http://localhost/cadastro_clientes/pages/buscarCliente/buscar.php'
 
@@ -68,7 +71,7 @@ function PegarDados(response) {
             DeletarCliente(dado[0])
             // LIMPANDO A TELA E RENDERIZANDO OS DADOS NOVAMENTE
             res.innerHTML = ''
-            CaregarDados()
+            // CaregarDados()
         })
 
         btn_editar.classList.add('btn')
@@ -105,3 +108,4 @@ function DeletarCliente(id) {
     }
     xhr.send();
 }
+

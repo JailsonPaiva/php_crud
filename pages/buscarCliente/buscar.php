@@ -8,7 +8,8 @@
 
     $email = $data['email'];
 
-    $sql = $pdo->prepare('SELECT * FROM pessoa WHERE email like :email ');
+
+    $sql = $pdo->prepare('SELECT * FROM pessoa WHERE email like :email or nome like :email');
     $sql->bindParam('email', $email);
     $sql->execute();
 

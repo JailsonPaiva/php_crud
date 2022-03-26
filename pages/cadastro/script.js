@@ -14,7 +14,7 @@ const Campo_observacao = document.querySelector('textarea[name=obs]')
 const Btn_cadastrar = document.getElementById("cadastrar")
 const consultar = document.getElementById("consultar")
 
-
+// MASCARA DOS CAMPOS
 function MascaraCpf() {
 	if(Campo_cpf.value.length == 3 || Campo_cpf.value.length == 7) {
 		Campo_cpf.value += "."
@@ -59,6 +59,7 @@ function MascaraCep() {
 	}
 }
 
+// REQUISIÇÕES AJAX
 Btn_cadastrar.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -75,40 +76,74 @@ Btn_cadastrar.addEventListener("click", (e) => {
     const valorRua = Campo_rua.value
     const valorObs = Campo_observacao.value
 
-    const documento = {
-        nome: valorNome,
-        nascimento:valorNacimiento,
-        cpf: valorCpf,
-        celular: valorCelular,
-        email:valorEmail,
-        cep: valorCep,
-        numero: valorNumero,
-        cidade: valorCidade,
-        estado: valorEstado,
-        bairro: valorBairro,
-        rua: valorRua,
-        observacao: valorObs
-    }
-
-    console.log(documento)
-
-    const url = 'http://localhost/cadastro_clientes/pages/cadastro/inserir.php';
+    if (!valorNome || !valorNacimiento || !valorCpf || !valorCelular || !valorEmail ) {
+        window.alert("Preencha os campos para cadastrar um novo cliente!")
+    } else {
+        const documento = {
+            nome: valorNome,
+            nascimento:valorNacimiento,
+            cpf: valorCpf,
+            celular: valorCelular,
+            email:valorEmail,
+            cep: valorCep,
+            numero: valorNumero,
+            cidade: valorCidade,
+            estado: valorEstado,
+            bairro: valorBairro,
+            rua: valorRua,
+            observacao: valorObs
+        }
     
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.setRequestHeader('Content-Type', 'application/json')
-
-    // xhr.setRequestHeader = () => {
-    //     if (xhr.readyState === 4) {
-    //         console.log(xhr.response)
-    //     }
-    // }
-
-    xhr.send(JSON.stringify(documento));
-
-    window.location.href='../listaClientes/index.html'
+        console.log(documento)
+    
+        const url = 'http://localhost/cadastro_clientes/pages/cadastro/inserir.php';
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json')
+    
+        // xhr.setRequestHeader = () => {
+        //     if (xhr.readyState === 4) {
+        //         console.log(xhr.response)
+        //     }
+        // }
+    
+        xhr.send(JSON.stringify(documento));
+    
+        window.location.href='../listaClientes/index.html'
+    }    
 })
 
 consultar.addEventListener("click", () => {
     window.location.href='../listaClientes/index.html'
 })
+
+// REQUISIÇÃO API VIA CEP 
+
+function ViaCep() {
+    const valorCep = Campo_cep.value
+
+    if (valorCep !== "" || valorCep.length == 8) {
+        const url = `https://viacep.com.br/ws/${valorCep}/json/`
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, false);
+        xhr.setRequestHeader('Content-Type', 'application/json')
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                console.log(JSON.parse(xhr.response))
+                const response = JSON.parse(xhr.response);
+                PreencherCep(response)
+            }
+        }
+        xhr.send();
+    }
+}
+
+function PreencherCep(response) {
+    Campo_cidade.value = response.localidade
+    Campo_estado.value = response.uf
+    Campo_bairro.value = response.bairro
+    Campo_rua.value = response.logradouro
+}
